@@ -9,7 +9,22 @@
 :root{--gold:#d4af37;--purple:#7c3aed;--dark:#0a0612;--text:#e8deff;--muted:#9b8ec4}
 body{background:var(--dark);color:var(--text);font-family:Georgia,serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
 h1{color:var(--gold);font-size:1.8rem;letter-spacing:3px;text-transform:uppercase;text-align:center;margin:20px 0 6px;text-shadow:0 0 20px rgba(212,175,55,.5)}
-.subtitle{color:var(--muted);font-style:italic;text-align:center;margin-bottom:30px;font-size:.95rem}
+.subtitle{color:var(--muted);font-style:italic;text-align:center;margin-bottom:20px;font-size:.95rem}
+.usuarios-panel{width:100%;max-width:650px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:16px;margin-bottom:20px}
+.usuarios-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.usuarios-header span{color:var(--gold);font-size:.95rem;letter-spacing:1px}
+.usuarios-add{display:flex;gap:8px}
+.usuarios-add input{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.3);color:var(--text);padding:8px 12px;border-radius:8px;font-family:Georgia,serif;font-size:.85rem;outline:none;width:180px}
+.usuarios-add input:focus{border-color:var(--gold)}
+.usuarios-add button{background:linear-gradient(135deg,var(--purple),#a855f7);border:none;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:.85rem;transition:.3s}
+.usuarios-add button:hover{opacity:.85}
+#usuariosList{display:flex;flex-wrap:wrap;gap:8px;min-height:10px}
+.usuario-chip{display:flex;align-items:center;gap:6px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.3s;font-size:.85rem}
+.usuario-chip:hover{background:rgba(124,58,237,.35)}
+.usuario-chip.activo{background:linear-gradient(135deg,#7c3aed,#a855f7);border-color:#a855f7;font-weight:700}
+.usuario-chip .del-btn{background:rgba(220,38,38,.6);border:none;color:#fff;border-radius:50%;width:16px;height:16px;font-size:.6rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:.3s}
+.usuario-chip .del-btn:hover{background:rgba(220,38,38,1)}
+#usuarioActivo{margin-top:10px;font-size:.8rem;color:var(--muted);min-height:16px}
 .spread-selector{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
 .spread-btn{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.4);color:var(--text);padding:10px 18px;border-radius:10px;cursor:pointer;font-family:Georgia,serif;font-size:.9rem;transition:.3s}
 .spread-btn:hover,.spread-btn.active{background:linear-gradient(135deg,#7c3aed,#a855f7);border-color:#7c3aed;box-shadow:0 0 15px rgba(124,58,237,.4)}
@@ -43,6 +58,19 @@ footer{color:var(--muted);font-size:.75rem;text-align:center;margin-top:30px;opa
 <body>
 <h1>🔮 Arcana Magistra</h1>
 <p class="subtitle">Tarot de Marsella con Inteligencia Artificial</p>
+
+<div class="usuarios-panel">
+  <div class="usuarios-header">
+    <span>👤 Consultantes</span>
+    <div class="usuarios-add">
+      <input id="nuevoUsuario" type="text" placeholder="Nombre del consultante" maxlength="30">
+      <button onclick="agregarUsuario()">＋ Agregar</button>
+    </div>
+  </div>
+  <div id="usuariosList"></div>
+  <div id="usuarioActivo"></div>
+</div>
+
 <div class="spread-selector">
   <button class="spread-btn active" data-spread="1">Una carta</button>
   <button class="spread-btn" data-spread="3">Tres cartas</button>
@@ -55,26 +83,88 @@ footer{color:var(--muted);font-size:.75rem;text-align:center;margin-top:30px;opa
 <div class="cartas-container" id="cartasContainer"></div>
 <div id="resultado"></div>
 <footer>Arcana Magistra - Tarot de Marsella con IA - Solo para entretenimiento</footer>
+
 <script>
 const AK='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';
 const AM=[{n:0,nombre:'El Loco',e:'🃏'},{n:1,nombre:'El Mago',e:'🎩'},{n:2,nombre:'La Sacerdotisa',e:'🌙'},{n:3,nombre:'La Emperatriz',e:'👑'},{n:4,nombre:'El Emperador',e:'⚔️'},{n:5,nombre:'El Hierofante',e:'📿'},{n:6,nombre:'Los Enamorados',e:'❤️'},{n:7,nombre:'El Carro',e:'🏆'},{n:8,nombre:'La Justicia',e:'⚖️'},{n:9,nombre:'El Ermitano',e:'🕯️'},{n:10,nombre:'La Rueda de la Fortuna',e:'🎡'},{n:11,nombre:'La Fuerza',e:'🦁'},{n:12,nombre:'El Colgado',e:'🙃'},{n:13,nombre:'La Muerte',e:'💀'},{n:14,nombre:'La Templanza',e:'🏺'},{n:15,nombre:'El Diablo',e:'😈'},{n:16,nombre:'La Torre',e:'⚡'},{n:17,nombre:'La Estrella',e:'⭐'},{n:18,nombre:'La Luna',e:'🌕'},{n:19,nombre:'El Sol',e:'☀️'},{n:20,nombre:'El Juicio',e:'🎺'},{n:21,nombre:'El Mundo',e:'🌍'}];
 const POS={1:['Tu carta'],3:['Pasado','Presente','Futuro'],5:['Situacion actual','Desafio','Pasado','Futuro','Resultado']};
-let spread=1,cartas=[];
+let spread=1,cartas=[],usuarios=[],usuarioActivo=null;
+
+function agregarUsuario(){
+  const inp=document.getElementById('nuevoUsuario');
+  const nombre=inp.value.trim();
+  if(!nombre)return;
+  if(usuarios.find(u=>u.nombre.toLowerCase()===nombre.toLowerCase())){alert('Ya existe un consultante con ese nombre.');return;}
+  const u={id:Date.now(),nombre};
+  usuarios.push(u);
+  inp.value='';
+  seleccionarUsuario(u.id);
+  renderUsuarios();
+}
+
+function eliminarUsuario(id){
+  usuarios=usuarios.filter(u=>u.id!==id);
+  if(usuarioActivo===id){usuarioActivo=usuarios.length>0?usuarios[0].id:null;}
+  renderUsuarios();
+  document.getElementById('cartasContainer').innerHTML='';
+  document.getElementById('resultado').innerHTML='';
+}
+
+function seleccionarUsuario(id){
+  usuarioActivo=id;
+  renderUsuarios();
+  document.getElementById('cartasContainer').innerHTML='';
+  document.getElementById('resultado').innerHTML='';
+}
+
+function renderUsuarios(){
+  const list=document.getElementById('usuariosList');
+  const activo=document.getElementById('usuarioActivo');
+  list.innerHTML='';
+  usuarios.forEach(u=>{
+    const chip=document.createElement('div');
+    chip.className='usuario-chip'+(u.id===usuarioActivo?' activo':'');
+    chip.innerHTML='<span onclick="seleccionarUsuario('+u.id+')">'+u.nombre+'</span><button class="del-btn" onclick="eliminarUsuario('+u.id+')" title="Eliminar">✕</button>';
+    list.appendChild(chip);
+  });
+  activo.textContent=usuarioActivo?(()=>{const u=usuarios.find(x=>x.id===usuarioActivo);return u?'Consultando para: '+u.nombre:''})():'';
+}
+
+document.getElementById('nuevoUsuario').addEventListener('keydown',e=>{if(e.key==='Enter')agregarUsuario();});
+
 document.querySelectorAll('.spread-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.spread-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');spread=parseInt(b.dataset.spread);document.getElementById('cartasContainer').innerHTML='';document.getElementById('resultado').innerHTML='';})});
+
 function mezclar(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
-function tirar(){const q=document.getElementById('pregunta').value.trim();const btn=document.getElementById('tirarBtn');btn.disabled=true;cartas=mezclar(AM).slice(0,spread).map(c=>({...c,inv:Math.random()<0.3}));const con=document.getElementById('cartasContainer');const pos=POS[spread];con.innerHTML='';cartas.forEach((c,i)=>{const w=document.createElement('div');w.className='carta-wrap';w.innerHTML='<div class="carta-pos">'+pos[i]+'</div><div class="carta'+(c.inv?' invertida':'')+'"><span style="font-size:2.5rem">'+c.e+'</span>'+(c.inv?'<span class="badge-invertida">INV</span>':'')+'</div><div class="carta-nombre">'+c.n+'. '+c.nombre+(c.inv?' (Inv.)':'')+'</div>';con.appendChild(w);});interpretar(q,btn);}
-async function interpretar(q,btn){const r=document.getElementById('resultado');r.innerHTML='<div class="spinner-wrap"><div class="spinner"></div><p>Las cartas estan hablando...</p></div>';const desc=cartas.map((c,i)=>'- '+POS[spread][i]+': '+c.nombre+(c.inv?' (invertida)':' (upright)')).join('
-');const prompt=q?'Eres un maestro del Tarot de Marsella. El consultante pregunta: "'+q+'"
 
-Cartas:
-'+desc+'
+function tirar(){
+  const q=document.getElementById('pregunta').value.trim();
+  const btn=document.getElementById('tirarBtn');
+  btn.disabled=true;
+  cartas=mezclar(AM).slice(0,spread).map(c=>({...c,inv:Math.random()<0.3}));
+  const con=document.getElementById('cartasContainer');
+  const pos=POS[spread];
+  con.innerHTML='';
+  cartas.forEach((c,i)=>{const w=document.createElement('div');w.className='carta-wrap';w.innerHTML='<div class="carta-pos">'+pos[i]+'</div><div class="carta'+(c.inv?' invertida':'')+'">' +'<span style="font-size:2.5rem">'+c.e+'</span>'+(c.inv?'<span class="badge-invertida">INV</span>':'')+'</div><div class="carta-nombre">'+c.n+'. '+c.nombre+(c.inv?' (Inv.)':'')+'</div>';con.appendChild(w);});
+  interpretar(q,btn);
+}
 
-Da una interpretacion profunda y poetica en segunda persona. Separa cada carta en parrafo y agrega una sintesis final.':'Eres un maestro del Tarot de Marsella. El consultante hace una consulta general.
-
-Cartas:
-'+desc+'
-
-Da una interpretacion general profunda y poetica en segunda persona. Sintetiza al final.';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'x-api-key':AK,'anthropic-version':'2023-06-01','content-type':'application/json','anthropic-dangerous-direct-browser-calls':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:1024,messages:[{role:'user',content:prompt}]})});if(!res.ok){const e=await res.json();throw new Error(e.error?.message||'Error '+res.status);}const d=await res.json();r.innerHTML='<div class="interpretacion"><h2>La lectura de las cartas</h2><p>'+d.content[0].text+'</p></div>';}catch(e){r.innerHTML='<div class="error-msg">Error al consultar el oraculo: '+e.message+'</div>';}finally{btn.disabled=false;}}
+async function interpretar(q,btn){
+  const r=document.getElementById('resultado');
+  const nombreConsultante=usuarioActivo?usuarios.find(u=>u.id===usuarioActivo)?.nombre:null;
+  const saludo=nombreConsultante?'El consultante se llama '+nombreConsultante+'. ':'';
+  r.innerHTML='<div class="spinner-wrap"><div class="spinner"></div><p>Las cartas estan hablando...</p></div>';
+  const desc=cartas.map((c,i)=>'- '+POS[spread][i]+': '+c.nombre+(c.inv?' (invertida)':' (upright)')).join(' ');
+  const prompt=q?'Eres un maestro del Tarot de Marsella. '+saludo+'El consultante pregunta: "'+q+'" Cartas: '+desc+' Da una interpretacion profunda y poetica en segunda persona. Separa cada carta en parrafo y agrega una sintesis final.':'Eres un maestro del Tarot de Marsella. '+saludo+'El consultante hace una consulta general. Cartas: '+desc+' Da una interpretacion general profunda y poetica en segunda persona. Sintetiza al final.';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'x-api-key':AK,'anthropic-version':'2023-06-01','content-type':'application/json','anthropic-dangerous-direct-browser-calls':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:1024,messages:[{role:'user',content:prompt}]})});
+    if(!res.ok){const e=await res.json();throw new Error(e.error?.message||'Error '+res.status);}
+    const d=await res.json();
+    const titulo=nombreConsultante?'Lectura para '+nombreConsultante:'La lectura de las cartas';
+    r.innerHTML='<div class="interpretacion"><h2>'+titulo+'</h2><p>'+d.content[0].text+'</p></div>';
+  }catch(e){
+    r.innerHTML='<div class="error-msg">Error al consultar el oraculo: '+e.message+'</div>';
+  }finally{btn.disabled=false;}
+}
 </script>
 </body>
 </html>
