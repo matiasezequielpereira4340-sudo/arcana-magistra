@@ -3,167 +3,341 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🔮 Arcana Magistra — Tarot de Marsella</title>
+<title>Arcana Magistra - Herramienta de Evaluacion</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--gold:#d4af37;--purple:#7c3aed;--dark:#0a0612;--text:#e8deff;--muted:#9b8ec4}
+:root{--gold:#d4af37;--purple:#7c3aed;--dark:#0a0612;--text:#e8deff;--muted:#9b8ec4;--green:#22c55e;--red:#ef4444}
 body{background:var(--dark);color:var(--text);font-family:Georgia,serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
 h1{color:var(--gold);font-size:1.8rem;letter-spacing:3px;text-transform:uppercase;text-align:center;margin:20px 0 6px;text-shadow:0 0 20px rgba(212,175,55,.5)}
-.subtitle{color:var(--muted);font-style:italic;text-align:center;margin-bottom:20px;font-size:.95rem}
-.usuarios-panel{width:100%;max-width:650px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:16px;margin-bottom:20px}
-.usuarios-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
-.usuarios-header span{color:var(--gold);font-size:.95rem;letter-spacing:1px}
-.usuarios-add{display:flex;gap:8px}
-.usuarios-add input{background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.3);color:var(--text);padding:8px 12px;border-radius:8px;font-family:Georgia,serif;font-size:.85rem;outline:none;width:180px}
-.usuarios-add input:focus{border-color:var(--gold)}
-.usuarios-add button{background:linear-gradient(135deg,var(--purple),#a855f7);border:none;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:.85rem;transition:.3s}
-.usuarios-add button:hover{opacity:.85}
-#usuariosList{display:flex;flex-wrap:wrap;gap:8px;min-height:10px}
-.usuario-chip{display:flex;align-items:center;gap:6px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.3s;font-size:.85rem}
-.usuario-chip:hover{background:rgba(124,58,237,.35)}
-.usuario-chip.activo{background:linear-gradient(135deg,#7c3aed,#a855f7);border-color:#a855f7;font-weight:700}
-.usuario-chip .del-btn{background:rgba(220,38,38,.6);border:none;color:#fff;border-radius:50%;width:16px;height:16px;font-size:.6rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:.3s}
-.usuario-chip .del-btn:hover{background:rgba(220,38,38,1)}
-#usuarioActivo{margin-top:10px;font-size:.8rem;color:var(--muted);min-height:16px}
-.spread-selector{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
-.spread-btn{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.4);color:var(--text);padding:10px 18px;border-radius:10px;cursor:pointer;font-family:Georgia,serif;font-size:.9rem;transition:.3s}
-.spread-btn:hover,.spread-btn.active{background:linear-gradient(135deg,#7c3aed,#a855f7);border-color:#7c3aed;box-shadow:0 0 15px rgba(124,58,237,.4)}
-.pregunta-box{width:100%;max-width:600px;margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.pregunta-input{flex:1;min-width:220px;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.3);color:var(--text);padding:12px 16px;border-radius:10px;font-family:Georgia,serif;font-size:.95rem;outline:none}
-.pregunta-input:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(212,175,55,.2)}
-.pregunta-input::placeholder{color:var(--muted)}
-.tirar-btn{background:linear-gradient(135deg,var(--gold),#b8962f);color:#0a0612;padding:12px 24px;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-family:Georgia,serif;font-size:1rem;box-shadow:0 4px 15px rgba(212,175,55,.3);transition:.3s}
-.tirar-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,175,55,.4)}
-.tirar-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.cartas-container{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:20px 0;max-width:900px}
-.carta-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
-.carta-pos{color:var(--muted);font-size:.75rem;text-align:center;letter-spacing:1px;text-transform:uppercase}
-.carta{width:90px;height:150px;border-radius:10px;border:2px solid rgba(212,175,55,.4);background:linear-gradient(135deg,#1a0f2e,#2d1f4e);display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transition:.4s;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.5)}
-.carta:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 8px 25px rgba(212,175,55,.3)}
+.subtitle{color:var(--muted);font-style:italic;text-align:center;margin-bottom:24px;font-size:.95rem}
+.panel{width:100%;max-width:750px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);border-radius:14px;padding:24px;margin-bottom:22px}
+.panel-title{color:var(--gold);font-size:1rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;border-bottom:1px solid rgba(212,175,55,.2);padding-bottom:10px}
+label{display:block;color:var(--muted);font-size:.85rem;margin-bottom:6px;margin-top:14px}
+input[type=text],input[type=date],textarea,select{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.3);color:var(--text);padding:10px 14px;border-radius:8px;font-family:Georgia,serif;font-size:.9rem;outline:none}
+input[type=text]:focus,input[type=date]:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 8px rgba(212,175,55,.2)}
+input[type=text]::placeholder,textarea::placeholder{color:var(--muted)}
+textarea{resize:vertical;min-height:120px;line-height:1.6}
+.btn{padding:12px 28px;border:none;border-radius:10px;cursor:pointer;font-family:Georgia,serif;font-size:.95rem;font-weight:700;transition:.3s;margin-top:16px}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#b8962f);color:#0a0612}
+.btn-gold:hover{box-shadow:0 4px 20px rgba(212,175,55,.4);transform:translateY(-1px)}
+.btn-gold:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-purple{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff}
+.btn-purple:hover{box-shadow:0 4px 20px rgba(124,58,237,.4);transform:translateY(-1px)}
+.numeros-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.num-card{background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.25);border-radius:10px;padding:14px;text-align:center}
+.num-card .num{font-size:2rem;color:var(--gold);font-weight:700}
+.num-card .num-label{font-size:.75rem;color:var(--muted);margin-top:4px;letter-spacing:1px}
+.cartas-container{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:16px 0}
+.carta-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+.carta-pos{color:var(--muted);font-size:.7rem;text-align:center;letter-spacing:1px;text-transform:uppercase}
+.carta{width:80px;height:136px;border-radius:10px;border:2px solid rgba(212,175,55,.4);background:linear-gradient(135deg,#1a0f2e,#2d1f4e);display:flex;align-items:center;justify-content:center;font-size:1.8rem;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.5)}
 .carta.invertida{transform:rotate(180deg)}
-.carta.invertida:hover{transform:rotate(180deg) translateY(-5px)}
-.carta-nombre{font-size:.75rem;color:var(--gold);text-align:center;max-width:90px;line-height:1.3}
-.interpretacion{width:100%;max-width:750px;background:linear-gradient(135deg,#130d1e,#1e1430);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:28px;margin-top:10px;box-shadow:0 0 40px rgba(124,58,237,.2)}
-.interpretacion h2{color:var(--gold);font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;text-align:center}
-.interpretacion p{color:var(--text);line-height:1.8;font-size:.95rem;white-space:pre-wrap}
-.spinner-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;margin:20px 0}
-.spinner{width:44px;height:44px;border:3px solid rgba(212,175,55,.2);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
+.carta-nombre{font-size:.7rem;color:var(--gold);text-align:center;max-width:84px;line-height:1.3}
+.badge-inv{position:absolute;bottom:3px;right:3px;background:rgba(220,38,38,.7);color:#fff;font-size:.5rem;padding:2px 4px;border-radius:3px}
+.spread-selector{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.spread-btn{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.4);color:var(--text);padding:8px 16px;border-radius:8px;cursor:pointer;font-family:Georgia,serif;font-size:.85rem;transition:.3s}
+.spread-btn.active,.spread-btn:hover{background:linear-gradient(135deg,#7c3aed,#a855f7);border-color:#7c3aed}
+.evaluacion{background:linear-gradient(135deg,#130d1e,#1e1430);border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:24px;margin-top:8px}
+.evaluacion h3{color:var(--gold);font-size:1rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;text-align:center}
+.puntaje{font-size:2.5rem;color:var(--gold);font-weight:700;text-align:center;margin:10px 0}
+.evaluacion p{color:var(--text);line-height:1.8;font-size:.9rem;white-space:pre-wrap}
+.spinner-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin:20px 0}
+.spinner{width:40px;height:40px;border:3px solid rgba(212,175,55,.2);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinner-wrap p{color:var(--muted);font-style:italic;font-size:.9rem}
-.error-msg{background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.4);color:#fca5a5;padding:16px;border-radius:10px;margin:16px 0;max-width:600px;text-align:center;font-size:.9rem}
-.badge-invertida{position:absolute;bottom:4px;right:4px;background:rgba(220,38,38,.7);color:#fff;font-size:.55rem;padding:2px 5px;border-radius:4px;letter-spacing:.5px}
-footer{color:var(--muted);font-size:.75rem;text-align:center;margin-top:30px;opacity:.6}
+.error-msg{background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.4);color:#fca5a5;padding:14px;border-radius:10px;margin:14px 0;text-align:center;font-size:.9rem}
+.seccion-bloqueada{opacity:.35;pointer-events:none}
+.paso-badge{display:inline-block;background:rgba(124,58,237,.3);border:1px solid #7c3aed;color:#a78bfa;border-radius:20px;padding:3px 12px;font-size:.75rem;margin-bottom:10px;letter-spacing:1px}
+.veronica-btn{position:fixed;bottom:20px;right:20px;background:rgba(124,58,237,.3);border:1px solid rgba(124,58,237,.5);color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;font-size:.75rem;font-family:Georgia,serif;transition:.3s;z-index:100}
+.veronica-btn:hover{background:rgba(124,58,237,.5);color:var(--text)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:200;display:none}
+.modal-overlay.show{display:flex}
+.modal{background:#13091f;border:1px solid rgba(212,175,55,.3);border-radius:16px;padding:28px;width:90%;max-width:500px}
+.modal h2{color:var(--gold);margin-bottom:18px;text-align:center}
+.modal input{margin-bottom:14px}
+.resultado-alumno{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:16px;margin-bottom:12px}
+.resultado-alumno h4{color:var(--gold);margin-bottom:8px}
+.resultado-alumno .meta{color:var(--muted);font-size:.8rem;margin-bottom:8px}
+.resultado-alumno .puntaje-mini{color:var(--gold);font-weight:700;font-size:1.2rem}
+footer{color:var(--muted);font-size:.75rem;text-align:center;margin-top:30px;opacity:.6;padding-bottom:20px}
 </style>
 </head>
 <body>
 <h1>🔮 Arcana Magistra</h1>
-<p class="subtitle">Tarot de Marsella con Inteligencia Artificial</p>
-
-<div class="usuarios-panel">
-  <div class="usuarios-header">
-    <span>👤 Consultantes</span>
-    <div class="usuarios-add">
-      <input id="nuevoUsuario" type="text" placeholder="Nombre del consultante" maxlength="30">
-      <button onclick="agregarUsuario()">＋ Agregar</button>
-    </div>
-  </div>
-  <div id="usuariosList"></div>
-  <div id="usuarioActivo"></div>
+<p class="subtitle">Herramienta de Evaluacion — Metodo Veronica Otero</p>
+<!-- PASO 1: IDENTIFICACION -->
+<div class="panel" id="paso1">
+<span class="paso-badge">PASO 1</span>
+<div class="panel-title">Datos del Alumno</div>
+<label>Nombre completo</label>
+<input type="text" id="alumnoNombre" placeholder="Nombre y apellido">
+<label>Fecha de nacimiento</label>
+<input type="date" id="alumnoFecha">
+<button class="btn btn-gold" onclick="iniciarPractica()">Comenzar practica</button>
 </div>
 
+<!-- PASO 2: NUMEROLOGIA -->
+<div class="panel seccion-bloqueada" id="paso2">
+<span class="paso-badge">PASO 2</span>
+<div class="panel-title">Numerologia</div>
+<div class="numeros-box" id="numerosBox"></div>
+<label>Tu interpretacion numerologica (describe los rasgos de esta persona segun los numeros)</label>
+<textarea id="interpNumerologia" placeholder="Escribe tu interpretacion..."></textarea>
+<button class="btn btn-gold" onclick="evaluarNumerologia()">Enviar interpretacion para evaluacion</button>
+<div id="evalNumerologia"></div>
+</div>
+
+<!-- PASO 3: TIRADA DE CARTAS -->
+<div class="panel seccion-bloqueada" id="paso3">
+<span class="paso-badge">PASO 3</span>
+<div class="panel-title">Tirada de Cartas</div>
+<label>Tipo de tirada</label>
 <div class="spread-selector">
-  <button class="spread-btn active" data-spread="1">Una carta</button>
-  <button class="spread-btn" data-spread="3">Tres cartas</button>
-  <button class="spread-btn" data-spread="5">Cruz celta</button>
+<button class="spread-btn active" data-spread="1" onclick="selSpread(this)">1 carta</button>
+<button class="spread-btn" data-spread="3" onclick="selSpread(this)">3 cartas</button>
+<button class="spread-btn" data-spread="4" onclick="selSpread(this)">4 cartas</button>
 </div>
-<div class="pregunta-box">
-  <input class="pregunta-input" id="pregunta" placeholder="Tu pregunta para el tarot (opcional)" maxlength="200">
-  <button class="tirar-btn" id="tirarBtn" onclick="tirar()">Tirar cartas</button>
-</div>
+<button class="btn btn-purple" onclick="tirarCartas()">Tirar cartas</button>
 <div class="cartas-container" id="cartasContainer"></div>
-<div id="resultado"></div>
-<footer>Arcana Magistra - Tarot de Marsella con IA - Solo para entretenimiento</footer>
+<div id="cartasInfo" style="display:none">
+<label>Tu interpretacion y combinaciones (aplica el sistema Concreto + Clasico + Union)</label>
+<textarea id="interpCartas" placeholder="Describe el significado de cada carta y las combinaciones que ves..."></textarea>
+<button class="btn btn-gold" onclick="evaluarCartas()">Enviar interpretacion para evaluacion</button>
+</div>
+<div id="evalCartas"></div>
+</div>
 
+<footer>Arcana Magistra &mdash; Metodo Veronica Otero &mdash; Solo para uso educativo</footer>
+
+<!-- BOTON VERONICA -->
+<button class="veronica-btn" onclick="abrirVeronica()">🔑 Profesora</button>
+
+<!-- MODAL VERONICA -->
+<div class="modal-overlay" id="veronicaModal">
+<div class="modal">
+<h2>🔑 Acceso Profesora</h2>
+<div id="loginVeronica">
+<label>Contrasena</label>
+<input type="password" id="veronicaPass" placeholder="Contrasena" onkeydown="if(event.key==='Enter')loginVeronica()">
+<button class="btn btn-gold" onclick="loginVeronica()">Ingresar</button>
+<p style="margin-top:12px"><a href="#" onclick="cerrarModal()" style="color:var(--muted);font-size:.85rem">Cancelar</a></p>
+</div>
+<div id="panelVeronica" style="display:none">
+<h3 style="color:var(--gold);margin-bottom:14px">Resultados de Alumnos</h3>
+<div id="listaResultados"></div>
+<button class="btn btn-purple" onclick="cerrarModal()" style="margin-top:14px">Cerrar</button>
+</div>
+</div>
+</div>
 <script>
 const AK='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';
-const AM=[{n:0,nombre:'El Loco',e:'🃏'},{n:1,nombre:'El Mago',e:'🎩'},{n:2,nombre:'La Sacerdotisa',e:'🌙'},{n:3,nombre:'La Emperatriz',e:'👑'},{n:4,nombre:'El Emperador',e:'⚔️'},{n:5,nombre:'El Hierofante',e:'📿'},{n:6,nombre:'Los Enamorados',e:'❤️'},{n:7,nombre:'El Carro',e:'🏆'},{n:8,nombre:'La Justicia',e:'⚖️'},{n:9,nombre:'El Ermitano',e:'🕯️'},{n:10,nombre:'La Rueda de la Fortuna',e:'🎡'},{n:11,nombre:'La Fuerza',e:'🦁'},{n:12,nombre:'El Colgado',e:'🙃'},{n:13,nombre:'La Muerte',e:'💀'},{n:14,nombre:'La Templanza',e:'🏺'},{n:15,nombre:'El Diablo',e:'😈'},{n:16,nombre:'La Torre',e:'⚡'},{n:17,nombre:'La Estrella',e:'⭐'},{n:18,nombre:'La Luna',e:'🌕'},{n:19,nombre:'El Sol',e:'☀️'},{n:20,nombre:'El Juicio',e:'🎺'},{n:21,nombre:'El Mundo',e:'🌍'}];
-const POS={1:['Tu carta'],3:['Pasado','Presente','Futuro'],5:['Situacion actual','Desafio','Pasado','Futuro','Resultado']};
-let spread=1,cartas=[],usuarios=[],usuarioActivo=null;
+const PASS_VERONICA='veronica2024';
+const AM=[
+{n:'As de Espadas',e:'⚔️',palo:'Espadas',concreto:'Extremos, situaciones que van a los limites.',clasico:'Inicio mental, claridad de pensamiento, verdad que corta.',union:'Una situacion extrema que exige claridad mental y decision sin rodeos.'},
+{n:'2 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Persona conocida, alguien del entorno cercano involucrado.',clasico:'Dualidad, tension entre dos opciones, equilibrio forzado.',union:'Una persona conocida que genera tension o dualidad en la situacion.'},
+{n:'3 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Alejamiento, separacion fisica o emocional.',clasico:'Dolor, ruptura, herida emocional.',union:'Un alejamiento doloroso, una separacion que deja marca.'},
+{n:'4 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Abandono, algo o alguien que se retira.',clasico:'Pausa, retiro, descanso necesario.',union:'Un abandono que invita a una pausa o retiro temporario.'},
+{n:'5 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Lagrimas o enfermedad, sufrimiento fisico o emocional.',clasico:'Conflicto, derrota, humillacion.',union:'Un conflicto que trae sufrimiento, lagrimas o impacto en la salud.'},
+{n:'6 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Viajes, desplazamiento, cambio de lugar.',clasico:'Transicion, movimiento hacia algo mejor.',union:'Un viaje o transicion que abre una nueva etapa.'},
+{n:'7 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Noticias, informacion que llega.',clasico:'Estrategia, astucia, planes que se manejan con cautela.',union:'Noticias que requieren estrategia o manejo cuidadoso.'},
+{n:'8 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Rabia, enojo contenido o explosivo.',clasico:'Bloqueo, restriccion, sentirse atrapado.',union:'Una rabia que bloquea y genera sensacion de encierro.'},
+{n:'9 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Dudas, incertidumbre que paraliza.',clasico:'Angustia, pesadillas, mente que no descansa.',union:'Las dudas generan angustia y no dejan descansar la mente.'},
+{n:'10 de Espadas',e:'⚔️',palo:'Espadas',concreto:'Discusion, conflicto verbal o enfrentamiento.',clasico:'Crisis, fin de un ciclo doloroso, golpe bajo.',union:'Una discusion que marca el fin de algo, un ciclo que se cierra con dolor.'},
+{n:'Sota de Espadas',e:'⚔️',palo:'Espadas',concreto:'Persona joven con actitud critica o combativa.',clasico:'Mensajero de conflicto, pensamiento rapido, vigilancia.',union:'Una persona joven que trae mensajes de conflicto o alerta.'},
+{n:'Caballo de Espadas',e:'⚔️',palo:'Espadas',concreto:'Accion rapida con agresividad o urgencia.',clasico:'Movimiento brusco, conflicto en marcha, velocidad.',union:'Algo que se mueve rapido y con fuerza, generando tension.'},
+{n:'Reina de Espadas',e:'⚔️',palo:'Espadas',concreto:'Mujer con caracter fuerte, independiente, a veces fria.',clasico:'Inteligencia, claridad, experiencia en el dolor.',union:'Una mujer fuerte que ha sufrido y actua con cabeza fria.'},
+{n:'Rey de Espadas',e:'⚔️',palo:'Espadas',concreto:'Profesional, figura de autoridad, hombre de decision.',clasico:'Intelecto maximo, juicio, poder mental.',union:'Una figura de autoridad que analiza y decide con la mente por encima de todo.'},
+{n:'As de Bastos',e:'🌿',palo:'Bastos',concreto:'Recaida, algo que vuelve, una situacion que regresa.',clasico:'Inicio de energia, fuerza creativa, impulso nuevo.',union:'Un nuevo impulso que puede traer de regreso algo del pasado.'},
+{n:'2 de Bastos',e:'🌿',palo:'Bastos',concreto:'Malestar, incomodidad, algo que no esta bien.',clasico:'Planificacion, dos fuerzas que se encuentran, proyecto gestado.',union:'Un proyecto o plan que nace con algun malestar o tension de fondo.'},
+{n:'3 de Bastos',e:'🌿',palo:'Bastos',concreto:'Emprendimiento, algo que se pone en marcha.',clasico:'Expansion, vision a futuro, crecimiento.',union:'Un emprendimiento que se expande con vision y energia.'},
+{n:'4 de Bastos',e:'🌿',palo:'Bastos',concreto:'Sociedad, union de personas para un fin comun.',clasico:'Estabilidad, celebracion, logro colectivo.',union:'Una sociedad estable que celebra un logro compartido.'},
+{n:'5 de Bastos',e:'🌿',palo:'Bastos',concreto:'Valores, lo que se defiende o se cuestiona.',clasico:'Conflicto, competencia, choque de fuerzas.',union:'Un conflicto en torno a valores o principios que se defienden.'},
+{n:'6 de Bastos',e:'🌿',palo:'Bastos',concreto:'Trabajo, actividad laboral, esfuerzo reconocido.',clasico:'Logro, victoria, reconocimiento publico.',union:'Un trabajo que trae logro y reconocimiento.'},
+{n:'7 de Bastos',e:'🌿',palo:'Bastos',concreto:'Conversacion, intercambio verbal, dialogo.',clasico:'Defensa, resistencia, sostenerse ante la presion.',union:'Una conversacion donde hay que defenderse o sostener una postura.'},
+{n:'8 de Bastos',e:'🌿',palo:'Bastos',concreto:'Desacuerdos, fricciones, falta de acuerdo.',clasico:'Rapidez, mensajes que llegan rapido, movimiento acelerado.',union:'Desacuerdos que se resuelven o se agravan con rapidez.'},
+{n:'9 de Bastos',e:'🌿',palo:'Bastos',concreto:'Obstaculos, algo que frena o complica.',clasico:'Resistencia, perseverancia, estar en guardia.',union:'Obstaculos que requieren resistencia y no bajar la guardia.'},
+{n:'10 de Bastos',e:'🌿',palo:'Bastos',concreto:'Tardanza, demoras, algo que no llega a tiempo.',clasico:'Carga excesiva, agotamiento, responsabilidad pesada.',union:'Una demora que genera carga y agotamiento.'},
+{n:'Sota de Bastos',e:'🌿',palo:'Bastos',concreto:'Persona joven con energia o mensaje laboral.',clasico:'Mensajero, noticias, inicio de algo nuevo.',union:'Un joven que trae noticias o dispara una situacion laboral.'},
+{n:'Caballo de Bastos',e:'🌿',palo:'Bastos',concreto:'Viaje, desplazamiento real, movimiento.',clasico:'Energia en marcha, accion rapida, impulso sin freno.',union:'Un viaje o movimiento que se activa con fuerza y rapidez.'},
+{n:'Reina de Bastos',e:'🌿',palo:'Bastos',concreto:'Mujer con energia, emprendedora, activa.',clasico:'Pasion, creatividad, liderazgo femenino.',union:'Una mujer apasionada que lidera con energia y determinacion.'},
+{n:'Rey de Bastos',e:'🌿',palo:'Bastos',concreto:'Hombre activo, emprendedor, figura de liderazgo.',clasico:'Vision, autoridad, fuego creativo en accion.',union:'Un lider con vision que impulsa proyectos con autoridad.'},
+{n:'As de Oros',e:'🟡',palo:'Oros',concreto:'Triunfo, exito concreto, victoria material.',clasico:'Inicio material, semilla de prosperidad.',union:'Un comienzo que promete triunfo y prosperidad concreta.'},
+{n:'2 de Oros',e:'🟡',palo:'Oros',concreto:'Papeles, documentos, tramites, burocracia.',clasico:'Equilibrio entre dos situaciones, malabarismo.',union:'Tramites o papeles que requieren equilibrio y atencion.'},
+{n:'3 de Oros',e:'🟡',palo:'Oros',concreto:'Ninos o hermanos, vinculos familiares directos.',clasico:'Colaboracion, trabajo en equipo, construccion conjunta.',union:'Un vinculo con ninos o hermanos que implica colaboracion.'},
+{n:'4 de Oros',e:'🟡',palo:'Oros',concreto:'Analisis o regalo, reflexion o algo que se recibe.',clasico:'Control, apego, guardar recursos.',union:'Un regalo o analisis que lleva a querer guardar o controlar algo.'},
+{n:'5 de Oros',e:'🟡',palo:'Oros',concreto:'Amor, vinculo afectivo, relacion romantica.',clasico:'Carencia material, dificultad economica.',union:'Una relacion de amor que atraviesa o genera una carencia.'},
+{n:'6 de Oros',e:'🟡',palo:'Oros',concreto:'Tiempo, los plazos, la espera.',clasico:'Dar y recibir, generosidad, equilibrio en los intercambios.',union:'Una espera o cuestion de tiempo que requiere equilibrio y generosidad.'},
+{n:'7 de Oros',e:'🟡',palo:'Oros',concreto:'Dinero, tema economico concreto.',clasico:'Evaluacion, contemplar resultados, pausa reflexiva.',union:'Una evaluacion economica, medir lo que se tiene o se espera.'},
+{n:'8 de Oros',e:'🟡',palo:'Oros',concreto:'Mujer morocha, persona concreta de ese perfil.',clasico:'Trabajo detallado, artesania, dedicacion.',union:'Una mujer morocha relacionada con trabajo o dedicacion.'},
+{n:'9 de Oros',e:'🟡',palo:'Oros',concreto:'Accion concreta, algo que se hace, se ejecuta.',clasico:'Logro personal, independencia, fruto del esfuerzo.',union:'Una accion concreta que lleva a un logro personal.'},
+{n:'10 de Oros',e:'🟡',palo:'Oros',concreto:'Estudios u oficina, ambiente academico o laboral formal.',clasico:'Estabilidad material, herencia, consolidacion.',union:'Un ambiente de estudios u oficina que se consolida con estabilidad.'},
+{n:'Sota de Oros',e:'🟡',palo:'Oros',concreto:'Persona joven ligada a lo material o estudios.',clasico:'Estudiante, mensajero de buenas noticias materiales.',union:'Un joven con propuesta concreta o relacionado a los estudios.'},
+{n:'Caballo de Oros',e:'🟡',palo:'Oros',concreto:'Movimiento de dinero o bienes.',clasico:'Avance practico, lento pero seguro, constancia.',union:'Un movimiento economico constante que avanza con solidez.'},
+{n:'Reina de Oros',e:'🟡',palo:'Oros',concreto:'Mujer practica, con recursos, ligada a lo material.',clasico:'Abundancia, sensatez, mujer que provee.',union:'Una mujer con recursos y cabeza practica que provee o gestiona.'},
+{n:'Rey de Oros',e:'🟡',palo:'Oros',concreto:'Hombre exitoso economicamente, figura de poder material.',clasico:'Dominio material, inversion, exito consolidado.',union:'Un hombre con poder economico consolidado y vision practica.'},
+{n:'As de Copas',e:'🏆',palo:'Copas',concreto:'Casa, el hogar, el espacio fisico donde se vive.',clasico:'Inicio emocional, amor que nace, copa que desborda.',union:'Un nuevo comienzo emocional ligado al hogar o a lo que se siente como casa.'},
+{n:'2 de Copas',e:'🏆',palo:'Copas',concreto:'Union, dos personas que se encuentran o se vinculan.',clasico:'Amor, pareja, alianza emocional.',union:'Una union afectiva que consolida un vinculo entre dos personas.'},
+{n:'3 de Copas',e:'🏆',palo:'Copas',concreto:'Mejoria, algo que se recupera o mejora.',clasico:'Celebracion, alegria compartida, abundancia emocional.',union:'Una mejoria que trae celebracion y bienestar compartido.'},
+{n:'4 de Copas',e:'🏆',palo:'Copas',concreto:'Amistades o disgustos, el circulo social.',clasico:'Apatia, introspection, oferta que no convence.',union:'Las amistades generan tanto apoyo como disgustos o decepciones.'},
+{n:'5 de Copas',e:'🏆',palo:'Copas',concreto:'Familia, el nucleo familiar, lo que nos une por sangre.',clasico:'Perdida emocional, duelo, enfoque en lo que queda.',union:'Una situacion familiar que implica perdida o duelo dentro del nucleo.'},
+{n:'6 de Copas',e:'🏆',palo:'Copas',concreto:'Pasado o futuro, lo que fue o lo que viene.',clasico:'Nostalgia, recuerdos, inocencia perdida.',union:'Una mirada al pasado o al futuro cargada de nostalgia o expectativa.'},
+{n:'7 de Copas',e:'🏆',palo:'Copas',concreto:'Pensamientos, lo que se piensa, se imagina o se planea.',clasico:'Ilusion, confusion, muchas opciones sin claridad.',union:'Pensamientos que se multiplican sin claridad, entre ilusion y confusion.'},
+{n:'8 de Copas',e:'🏆',palo:'Copas',concreto:'Mujer joven rubia, persona concreta de ese perfil.',clasico:'Cambio emocional, dejar atras, buscar algo mas.',union:'Una mujer joven rubia que atraviesa un cambio o deja algo atras.'},
+{n:'9 de Copas',e:'🏆',palo:'Copas',concreto:'Exito, logro emocional o material reconocido.',clasico:'Satisfaccion, deseos cumplidos, bienestar.',union:'Un exito que trae satisfaccion profunda y deseos cumplidos.'},
+{n:'10 de Copas',e:'🏆',palo:'Copas',concreto:'Reunion, encuentro de personas con carga afectiva.',clasico:'Felicidad plena, armonia familiar, plenitud emocional.',union:'Una reunion que trae felicidad y armonia, un momento de plenitud.'},
+{n:'Sota de Copas',e:'🏆',palo:'Copas',concreto:'Persona joven sensible o con mensaje emocional.',clasico:'Mensajero de amor, intuicion joven, propuesta afectiva.',union:'Un joven que trae mensajes afectivos o dispara situaciones emocionales.'},
+{n:'Caballo de Copas',e:'🏆',palo:'Copas',concreto:'Movimiento emocional, alguien que llega con sentimientos.',clasico:'Propuesta romantica, avance afectivo, caballero que llega.',union:'Alguien que se acerca con sentimientos o propuesta emocional concreta.'},
+{n:'Reina de Copas',e:'🏆',palo:'Copas',concreto:'Mujer intuitiva, sensible, ligada a lo emocional.',clasico:'Amor maternal, intuicion profunda, mujer que cuida.',union:'Una mujer intuitiva y amorosa que cuida y sostiene emocionalmente.'},
+{n:'Rey de Copas',e:'🏆',palo:'Copas',concreto:'Hombre sensible, maduro emocionalmente, vinculado al arte o la familia.',clasico:'Equilibrio emocional, sabiduria afectiva, hombre que contiene.',union:'Un hombre maduro emocionalmente que contiene y equilibra la situacion.'}
+];
+const POS={1:['Tu carta'],3:['Pasado','Presente','Futuro'],4:['Situacion actual','Desafio','Pasado','Resultado']};
+let alumnoActual=null, cartasActuales=[], spreadActual=1;
 
-function agregarUsuario(){
-  const inp=document.getElementById('nuevoUsuario');
-  const nombre=inp.value.trim();
-  if(!nombre)return;
-  if(usuarios.find(u=>u.nombre.toLowerCase()===nombre.toLowerCase())){alert('Ya existe un consultante con ese nombre.');return;}
-  const u={id:Date.now(),nombre};
-  usuarios.push(u);
-  inp.value='';
-  seleccionarUsuario(u.id);
-  renderUsuarios();
+function reducir(n){while(n>22&&n!==11&&n!==22){let s=0;String(n).split('').forEach(d=>s+=parseInt(d));n=s;}return n;}
+function numLetra(c){const m={a:1,b:2,c:3,d:4,e:5,f:6,g:7,h:8,i:9,j:1,k:2,l:3,m:4,n:5,o:6,p:7,q:8,r:9,s:1,t:2,u:3,v:4,w:5,x:6,y:7,z:8};return m[c.toLowerCase()]||0;}
+function calcNumerologia(nombre,fecha){
+  const letras=nombre.replace(/[^a-zA-Z]/g,'').split('');
+  const sumaNombre=letras.reduce((a,c)=>a+numLetra(c),0);
+  const destino=reducir(sumaNombre);
+  const partes=fecha.split('-');
+  const d=parseInt(partes[2]),m=parseInt(partes[1]),y=parseInt(partes[0]);
+  const sumaAnio=String(y).split('').reduce((a,c)=>a+parseInt(c),0);
+  const camino=reducir(d+m+sumaAnio);
+  const vocales='aeiou';
+  const sumaVoc=letras.filter(c=>vocales.includes(c.toLowerCase())).reduce((a,c)=>a+numLetra(c),0);
+  const alma=reducir(sumaVoc||1);
+  const sumaCons=letras.filter(c=>!vocales.includes(c.toLowerCase())).reduce((a,c)=>a+numLetra(c),0);
+  const personalidad=reducir(sumaCons||1);
+  return {camino,destino,alma,personalidad};
 }
 
-function eliminarUsuario(id){
-  usuarios=usuarios.filter(u=>u.id!==id);
-  if(usuarioActivo===id){usuarioActivo=usuarios.length>0?usuarios[0].id:null;}
-  renderUsuarios();
+function iniciarPractica(){
+  const nombre=document.getElementById('alumnoNombre').value.trim();
+  const fecha=document.getElementById('alumnoFecha').value;
+  if(!nombre||!fecha){alert('Completa nombre y fecha de nacimiento.');return;}
+  alumnoActual={nombre,fecha,nums:calcNumerologia(nombre,fecha),ts:new Date().toLocaleString('es-AR')};
+  document.getElementById('paso1').querySelector('button').disabled=true;
+  const p2=document.getElementById('paso2');
+  p2.classList.remove('seccion-bloqueada');
+  const n=alumnoActual.nums;
+  document.getElementById('numerosBox').innerHTML=
+    cardNum(n.camino,'Camino de Vida')+cardNum(n.destino,'Destino')+cardNum(n.alma,'Deseo del Alma')+cardNum(n.personalidad,'Personalidad');
+}
+function cardNum(n,l){return '<div class="num-card"><div class="num">'+n+'</div><div class="num-label">'+l+'</div></div>';}
+
+function selSpread(btn){
+  document.querySelectorAll('.spread-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  spreadActual=parseInt(btn.dataset.spread);
   document.getElementById('cartasContainer').innerHTML='';
-  document.getElementById('resultado').innerHTML='';
+  document.getElementById('cartasInfo').style.display='none';
+  document.getElementById('evalCartas').innerHTML='';
 }
-
-function seleccionarUsuario(id){
-  usuarioActivo=id;
-  renderUsuarios();
-  document.getElementById('cartasContainer').innerHTML='';
-  document.getElementById('resultado').innerHTML='';
-}
-
-function renderUsuarios(){
-  const list=document.getElementById('usuariosList');
-  const activo=document.getElementById('usuarioActivo');
-  list.innerHTML='';
-  usuarios.forEach(u=>{
-    const chip=document.createElement('div');
-    chip.className='usuario-chip'+(u.id===usuarioActivo?' activo':'');
-    chip.innerHTML='<span onclick="seleccionarUsuario('+u.id+')">'+u.nombre+'</span><button class="del-btn" onclick="eliminarUsuario('+u.id+')" title="Eliminar">✕</button>';
-    list.appendChild(chip);
-  });
-  activo.textContent=usuarioActivo?(()=>{const u=usuarios.find(x=>x.id===usuarioActivo);return u?'Consultando para: '+u.nombre:''})():'';
-}
-
-document.getElementById('nuevoUsuario').addEventListener('keydown',e=>{if(e.key==='Enter')agregarUsuario();});
-
-document.querySelectorAll('.spread-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.spread-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');spread=parseInt(b.dataset.spread);document.getElementById('cartasContainer').innerHTML='';document.getElementById('resultado').innerHTML='';})});
 
 function mezclar(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
 
-function tirar(){
-  const q=document.getElementById('pregunta').value.trim();
-  const btn=document.getElementById('tirarBtn');
-  btn.disabled=true;
-  cartas=mezclar(AM).slice(0,spread).map(c=>({...c,inv:Math.random()<0.3}));
+function tirarCartas(){
+  cartasActuales=mezclar(AM).slice(0,spreadActual).map(c=>({...c,inv:Math.random()<0.3}));
   const con=document.getElementById('cartasContainer');
-  const pos=POS[spread];
+  const pos=POS[spreadActual];
   con.innerHTML='';
-  cartas.forEach((c,i)=>{const w=document.createElement('div');w.className='carta-wrap';w.innerHTML='<div class="carta-pos">'+pos[i]+'</div><div class="carta'+(c.inv?' invertida':'')+'">' +'<span style="font-size:2.5rem">'+c.e+'</span>'+(c.inv?'<span class="badge-invertida">INV</span>':'')+'</div><div class="carta-nombre">'+c.n+'. '+c.nombre+(c.inv?' (Inv.)':'')+'</div>';con.appendChild(w);});
-  interpretar(q,btn);
+  cartasActuales.forEach((c,i)=>{
+    const w=document.createElement('div');w.className='carta-wrap';
+    w.innerHTML='<div class="carta-pos">'+pos[i]+'</div><div class="carta'+(c.inv?' invertida':'')+'"><span style="font-size:1.6rem">'+c.e+'</span>'+(c.inv?'<span class="badge-inv">INV</span>':'')+'</div><div class="carta-nombre">'+c.n+(c.inv?' (Inv.)':'')+'</div>';
+    con.appendChild(w);
+  });
+  document.getElementById('cartasInfo').style.display='block';
+  document.getElementById('evalCartas').innerHTML='';
+  document.getElementById('interpCartas').value='';
 }
 
-async function interpretar(q,btn){
-  const r=document.getElementById('resultado');
-  const nombreConsultante=usuarioActivo?usuarios.find(u=>u.id===usuarioActivo)?.nombre:null;
-  const saludo=nombreConsultante?'El consultante se llama '+nombreConsultante+'. ':'';
-  r.innerHTML='<div class="spinner-wrap"><div class="spinner"></div><p>Las cartas estan hablando...</p></div>';
-  const desc=cartas.map((c,i)=>'- '+POS[spread][i]+': '+c.nombre+(c.inv?' (invertida)':' (upright)')).join(' ');
-  const prompt=q?'Eres un maestro del Tarot de Marsella. '+saludo+'El consultante pregunta: "'+q+'" Cartas: '+desc+' Da una interpretacion profunda y poetica en segunda persona. Separa cada carta en parrafo y agrega una sintesis final.':'Eres un maestro del Tarot de Marsella. '+saludo+'El consultante hace una consulta general. Cartas: '+desc+' Da una interpretacion general profunda y poetica en segunda persona. Sintetiza al final.';
+async function llamarIA(prompt){
+  const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'x-api-key':AK,'anthropic-version':'2023-06-01','content-type':'application/json','anthropic-dangerous-direct-browser-calls':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
+  if(!res.ok){const e=await res.json();throw new Error(e.error?.message||'Error '+res.status);}
+  const d=await res.json();return d.content[0].text;
+}
+
+async function evaluarNumerologia(){
+  const interp=document.getElementById('interpNumerologia').value.trim();
+  if(!interp){alert('Escribe tu interpretacion antes de enviar.');return;}
+  const btns=document.querySelectorAll('#paso2 button');btns.forEach(b=>b.disabled=true);
+  const div=document.getElementById('evalNumerologia');
+  div.innerHTML='<div class="spinner-wrap"><div class="spinner"></div><p>Veronica esta evaluando...</p></div>';
+  const n=alumnoActual.nums;
+  const prompt='Eres Veronica Otero, profesora de Tarot de Marsella y numerologia. Evalua la interpretacion numerologica de tu alumno. Alumno: '+alumnoActual.nombre+'. Los numeros calculados son: Camino de Vida '+n.camino+', Numero de Destino '+n.destino+', Deseo del Alma '+n.alma+', Numero de Personalidad '+n.personalidad+'. La interpretacion del alumno fue: "'+interp+'". Evalua de manera docente y constructiva. Puntua del 1 al 10. Senal aciertos, errores y explica los significados correctos. Comienza con: PUNTUACION: X/10';
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'x-api-key':AK,'anthropic-version':'2023-06-01','content-type':'application/json','anthropic-dangerous-direct-browser-calls':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:1024,messages:[{role:'user',content:prompt}]})});
-    if(!res.ok){const e=await res.json();throw new Error(e.error?.message||'Error '+res.status);}
-    const d=await res.json();
-    const titulo=nombreConsultante?'Lectura para '+nombreConsultante:'La lectura de las cartas';
-    r.innerHTML='<div class="interpretacion"><h2>'+titulo+'</h2><p>'+d.content[0].text+'</p></div>';
-  }catch(e){
-    r.innerHTML='<div class="error-msg">Error al consultar el oraculo: '+e.message+'</div>';
-  }finally{btn.disabled=false;}
+    const resp=await llamarIA(prompt);
+    const match=resp.match(/PUNTUACION[:s]+(d+)/i);
+    const puntaje=match?match[1]:'?';
+    div.innerHTML='<div class="evaluacion"><h3>Evaluacion de Veronica</h3><div class="puntaje">'+puntaje+'/10</div><p>'+resp.replace(/</g,'&lt;')+'</p></div>';
+    if(alumnoActual)alumnoActual.evalNumerologia={puntaje,texto:resp,interpAlumno:interp};
+    document.getElementById('paso3').classList.remove('seccion-bloqueada');
+  }catch(e){div.innerHTML='<div class="error-msg">Error: '+e.message+'</div>';}
+  finally{btns.forEach(b=>b.disabled=false);}
+}
+
+async function evaluarCartas(){
+  const interp=document.getElementById('interpCartas').value.trim();
+  if(!interp){alert('Escribe tu interpretacion antes de enviar.');return;}
+  const btn=document.querySelector('#paso3 .btn-gold');btn.disabled=true;
+  const div=document.getElementById('evalCartas');
+  div.innerHTML='<div class="spinner-wrap"><div class="spinner"></div><p>Veronica esta evaluando tu lectura...</p></div>';
+  const pos=POS[spreadActual];
+  const descCartas=cartasActuales.map((c,i)=>pos[i]+': '+c.n+(c.inv?' (invertida)':' (derecha)')+' — Concreto: '+c.concreto+' | Clasico: '+c.clasico+' | Union: '+c.union).join('
+');
+  const prompt='Eres Veronica Otero, profesora de Tarot de Marsella con sistema Concreto+Clasico+Union. Evalua la lectura de tu alumno. Las cartas que salieron fueron:
+'+descCartas+'
+
+Interpretacion del alumno:
+"'+interp+'"
+
+Evalua si uso correctamente los tres niveles (Concreto, Clasico, Union), si identifico combinaciones entre cartas y si la sintesis es coherente. Puntua del 1 al 10. Senal aciertos y errores. Muestra la lectura correcta que se esperaba. Comienza con: PUNTUACION: X/10';
+  try{
+    const resp=await llamarIA(prompt);
+    const match=resp.match(/PUNTUACION[:s]+(d+)/i);
+    const puntaje=match?match[1]:'?';
+    div.innerHTML='<div class="evaluacion"><h3>Evaluacion de Veronica</h3><div class="puntaje">'+puntaje+'/10</div><p>'+resp.replace(/</g,'&lt;')+'</p></div>';
+    if(alumnoActual){
+      alumnoActual.evalCartas={puntaje,texto:resp,interpAlumno:interp,cartas:cartasActuales.map(c=>c.n+(c.inv?' (Inv.)':''))};
+      guardarResultado();
+    }
+  }catch(e){div.innerHTML='<div class="error-msg">Error: '+e.message+'</div>';}
+  finally{btn.disabled=false;}
+}
+
+function guardarResultado(){
+  try{
+    const key='arcana_resultados';
+    let lista=JSON.parse(localStorage.getItem(key)||'[]');
+    lista=lista.filter(r=>!(r.nombre===alumnoActual.nombre&&r.ts===alumnoActual.ts));
+    lista.unshift(alumnoActual);
+    if(lista.length>300)lista=lista.slice(0,300);
+    localStorage.setItem(key,JSON.stringify(lista));
+  }catch(e){console.warn('No se pudo guardar:',e);}
+}
+
+function abrirVeronica(){document.getElementById('veronicaModal').classList.add('show');}
+function cerrarModal(){document.getElementById('veronicaModal').classList.remove('show');document.getElementById('loginVeronica').style.display='block';document.getElementById('panelVeronica').style.display='none';document.getElementById('veronicaPass').value='';}
+
+function loginVeronica(){
+  if(document.getElementById('veronicaPass').value===PASS_VERONICA){
+    document.getElementById('loginVeronica').style.display='none';
+    document.getElementById('panelVeronica').style.display='block';
+    mostrarResultados();
+  }else{alert('Contrasena incorrecta.');document.getElementById('veronicaPass').value='';}
+}
+
+function mostrarResultados(){
+  const lista=JSON.parse(localStorage.getItem('arcana_resultados')||'[]');
+  const div=document.getElementById('listaResultados');
+  if(!lista.length){div.innerHTML='<p style="color:var(--muted);text-align:center">Todavia no hay resultados guardados.</p>';return;}
+  div.style.maxHeight='400px';div.style.overflowY='auto';
+  div.innerHTML=lista.map(r=>{
+    const pN=r.evalNumerologia?'Numerologia: <strong>'+r.evalNumerologia.puntaje+'/10</strong>':'';
+    const pC=r.evalCartas?'Tirada: <strong>'+r.evalCartas.puntaje+'/10</strong>':'';
+    const cartas=r.evalCartas?r.evalCartas.cartas.join(' | '):'';
+    return '<div class="resultado-alumno"><h4>'+r.nombre+'</h4><div class="meta">'+r.ts+'</div><div style="display:flex;gap:16px;margin:6px 0">'+pN+' '+pC+'</div>'+(cartas?'<div style="color:var(--muted);font-size:.78rem;margin-top:4px">Cartas: '+cartas+'</div>':'')+'</div>';
+  }).join('');
 }
 </script>
 </body>
