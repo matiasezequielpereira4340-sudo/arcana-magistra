@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--gold:#d4af37;--purple:#7c3aed;--dark:#0a0612;--text:#e8deff;--muted:#9b8ec4;--green:#22c55e;--red:#ef4444}
-body{background:var(--dark);color:var(--text);font-family:Georgia,serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
+body{background:var(--dark);color:var(--text);font-family:Gehorgia,serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
 h1{color:var(--gold);font-size:1.8rem;letter-spacing:3px;text-transform:uppercase;text-align:center;margin:20px 0 6px;text-shadow:0 0 20px rgba(212,175,55,.5)}
 .subtitle{color:var(--muted);font-style:italic;text-align:center;margin-bottom:24px;font-size:.95rem}
 .panel{width:100%;max-width:750px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);border-radius:14px;padding:24px;margin-bottom:22px}
@@ -66,10 +66,7 @@ small.code{font-family:monospace;color:#ddd}
 <body>
 <h1>🔮 Arcana Magistra</h1>
 <p class="subtitle">Herramienta de Evaluación — Método Verónica Otero</p>
-<div class="aviso">
-Este archivo quedó listo para usar las cartas reales desde <small class="code">assets/cartas/</small>.
-Por seguridad, la API key del front quedó vacía: usá una variable propia o un backend/proxy.
-</div>
+
 
 <div class="panel" id="paso1">
 <span class="paso-badge">PASO 1</span>
@@ -138,7 +135,7 @@ const PASS_VERONICA = 'veronica2024';
 const AM = [
   {
     "n": "El Loco",
-    "img": "assets/cartas/arcanos_mayores/00_el_loco.png",
+    "img": "00_el_loco.png",
     "palo": "Mayores",
     "concreto": "Impulso, comienzo incierto, salto al vacio.",
     "clasico": "Libertad, espontaneidad, lo imprevisible.",
@@ -146,7 +143,7 @@ const AM = [
   },
   {
     "n": "El Mago",
-    "img": "assets/cartas/arcanos_mayores/01_el_mago.png",
+    "img": "01_el_mago.png",
     "palo": "Mayores",
     "concreto": "Accion concreta, iniciativa, alguien que empieza.",
     "clasico": "Voluntad, recursos, poder de manifestar.",
@@ -154,7 +151,7 @@ const AM = [
   },
   {
     "n": "La Papisa",
-    "img": "assets/cartas/arcanos_mayores/02_la_papisa.png",
+    "img": "02_la_papisa.png",
     "palo": "Mayores",
     "concreto": "Silencio, espera, informacion reservada.",
     "clasico": "Sabiduria interior, intuicion, conocimiento oculto.",
@@ -162,7 +159,7 @@ const AM = [
   },
   {
     "n": "La Emperatriz",
-    "img": "assets/cartas/arcanos_mayores/03_la_emperatriz.png",
+    "img": "03_la_emperatriz.png",
     "palo": "Mayores",
     "concreto": "Mujer creativa, fertilidad de ideas, expansion.",
     "clasico": "Creatividad, expresion, abundancia.",
@@ -170,7 +167,7 @@ const AM = [
   },
   {
     "n": "El Emperador",
-    "img": "assets/cartas/arcanos_mayores/04_el_emperador.png",
+    "img": "04_el_emperador.png",
     "palo": "Mayores",
     "concreto": "Hombre de poder, estructura, orden.",
     "clasico": "Autoridad, estabilidad, control.",
@@ -178,7 +175,7 @@ const AM = [
   },
   {
     "n": "El Papa",
-    "img": "assets/cartas/arcanos_mayores/05_el_papa.png",
+    "img": "05_el_papa.png",
     "palo": "Mayores",
     "concreto": "Consejo, guia, enseñanza.",
     "clasico": "Tradicion, fe, aprendizaje, maestro.",
@@ -186,7 +183,7 @@ const AM = [
   },
   {
     "n": "Los Enamorados",
-    "img": "assets/cartas/arcanos_mayores/06_los_enamorados.png",
+    "img": "06_los_enamorados.png",
     "palo": "Mayores",
     "concreto": "Eleccion, vinculo, dos caminos.",
     "clasico": "Amor, decisiones, valores en juego.",
@@ -194,7 +191,7 @@ const AM = [
   },
   {
     "n": "El Carro",
-    "img": "assets/cartas/arcanos_mayores/07_el_carro.png",
+    "img": "07_el_carro.png",
     "palo": "Mayores",
     "concreto": "Movimiento, avance, viaje.",
     "clasico": "Victoria, direccion, impulso.",
@@ -202,7 +199,7 @@ const AM = [
   },
   {
     "n": "La Justicia",
-    "img": "assets/cartas/arcanos_mayores/08_la_justicia.png",
+    "img": "08_la_justicia.png",
     "palo": "Mayores",
     "concreto": "Papeles, equilibrio, asunto legal.",
     "clasico": "Verdad, responsabilidad, orden justo.",
@@ -210,7 +207,7 @@ const AM = [
   },
   {
     "n": "El Ermitaño",
-    "img": "assets/cartas/arcanos_mayores/09_el_ermitano.png",
+    "img": "09_el_ermitano.png",
     "palo": "Mayores",
     "concreto": "Soledad, distancia, proceso lento.",
     "clasico": "Introspeccion, prudencia, busqueda interior.",
@@ -218,7 +215,7 @@ const AM = [
   },
   {
     "n": "La Rueda de la Fortuna",
-    "img": "assets/cartas/arcanos_mayores/10_la_rueda_de_la_fortuna.png",
+    "img": "10_la_rueda_de_la_fortuna.png",
     "palo": "Mayores",
     "concreto": "Cambio, giro, movimiento del destino.",
     "clasico": "Ciclos, oportunidad, viraje.",
@@ -226,7 +223,7 @@ const AM = [
   },
   {
     "n": "La Fuerza",
-    "img": "assets/cartas/arcanos_mayores/11_la_fuerza.png",
+    "img": "11_la_fuerza.png",
     "palo": "Mayores",
     "concreto": "Coraje, dominio de impulsos.",
     "clasico": "Fortaleza interior, autocontrol, valentia.",
@@ -234,7 +231,7 @@ const AM = [
   },
   {
     "n": "El Colgado",
-    "img": "assets/cartas/arcanos_mayores/12_el_colgado.png",
+    "img": "12_el_colgado.png",
     "palo": "Mayores",
     "concreto": "Demora, pausa, sacrificio.",
     "clasico": "Suspension, nueva mirada, entrega.",
@@ -242,7 +239,7 @@ const AM = [
   },
   {
     "n": "La Muerte",
-    "img": "assets/cartas/arcanos_mayores/13_la_muerte.png",
+    "img": "13_la_muerte.png",
     "palo": "Mayores",
     "concreto": "Corte, final, transformacion radical.",
     "clasico": "Fin de ciclo, limpieza, renacimiento.",
@@ -250,7 +247,7 @@ const AM = [
   },
   {
     "n": "La Templanza",
-    "img": "assets/cartas/arcanos_mayores/14_la_templanza.png",
+    "img": "14_la_templanza.png",
     "palo": "Mayores",
     "concreto": "Calma, recuperacion, armonizacion.",
     "clasico": "Equilibrio, sanacion, fluidez.",
@@ -258,7 +255,7 @@ const AM = [
   },
   {
     "n": "El Diablo",
-    "img": "assets/cartas/arcanos_mayores/15_el_diablo.png",
+    "img": "15_el_diablo.png",
     "palo": "Mayores",
     "concreto": "Deseo, atadura, exceso.",
     "clasico": "Tentacion, poder, pasion, dependencia.",
@@ -266,7 +263,7 @@ const AM = [
   },
   {
     "n": "La Torre",
-    "img": "assets/cartas/arcanos_mayores/16_la_torre.png",
+    "img": "16_la_torre.png",
     "palo": "Mayores",
     "concreto": "Ruptura, impacto, caida de estructura.",
     "clasico": "Crisis, revelacion brusca, derrumbe.",
@@ -274,7 +271,7 @@ const AM = [
   },
   {
     "n": "La Estrella",
-    "img": "assets/cartas/arcanos_mayores/17_la_estrella.png",
+    "img": "17_la_estrella.png",
     "palo": "Mayores",
     "concreto": "Esperanza, luz, ayuda.",
     "clasico": "Inspiracion, proteccion, fe en el porvenir.",
@@ -282,7 +279,7 @@ const AM = [
   },
   {
     "n": "La Luna",
-    "img": "assets/cartas/arcanos_mayores/18_la_luna.png",
+    "img": "18_la_luna.png",
     "palo": "Mayores",
     "concreto": "Miedos, confusion, sensibilidad alta.",
     "clasico": "Inconsciente, intuicion, engano posible.",
@@ -290,7 +287,7 @@ const AM = [
   },
   {
     "n": "El Sol",
-    "img": "assets/cartas/arcanos_mayores/19_el_sol.png",
+    "img": "19_el_sol.png",
     "palo": "Mayores",
     "concreto": "Claridad, exito, alegria.",
     "clasico": "Vitalidad, verdad, expansion, union.",
@@ -298,7 +295,7 @@ const AM = [
   },
   {
     "n": "El Juicio",
-    "img": "assets/cartas/arcanos_mayores/20_el_juicio.png",
+    "img": "20_el_juicio.png",
     "palo": "Mayores",
     "concreto": "Llamado, noticia, despertar.",
     "clasico": "Renacimiento, evaluacion, decision final.",
@@ -306,7 +303,7 @@ const AM = [
   },
   {
     "n": "El Mundo",
-    "img": "assets/cartas/arcanos_mayores/21_el_mundo.png",
+    "img": "21_el_mundo.png",
     "palo": "Mayores",
     "concreto": "Cierre completo, viaje, logro total.",
     "clasico": "Realizacion, integracion, culminacion.",
@@ -314,7 +311,7 @@ const AM = [
   },
   {
     "n": "As de Espadas",
-    "img": "assets/cartas/espadas/as_de_espadas.png",
+    "img": "as_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Extremos, situaciones que van a los limites.",
     "clasico": "Inicio mental, claridad de pensamiento, verdad que corta.",
@@ -322,7 +319,7 @@ const AM = [
   },
   {
     "n": "2 de Espadas",
-    "img": "assets/cartas/espadas/dos_de_espadas.png",
+    "img": "dos_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Persona conocida, alguien del entorno cercano involucrado.",
     "clasico": "Dualidad, tension entre dos opciones, equilibrio forzado.",
@@ -330,7 +327,7 @@ const AM = [
   },
   {
     "n": "3 de Espadas",
-    "img": "assets/cartas/espadas/tres_de_espadas.png",
+    "img": "tres_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Alejamiento, separacion fisica o emocional.",
     "clasico": "Dolor, ruptura, herida emocional.",
@@ -338,7 +335,7 @@ const AM = [
   },
   {
     "n": "4 de Espadas",
-    "img": "assets/cartas/espadas/cuatro_de_espadas.png",
+    "img": "cuatro_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Abandono, algo o alguien que se retira.",
     "clasico": "Pausa, retiro, descanso necesario.",
@@ -346,7 +343,7 @@ const AM = [
   },
   {
     "n": "5 de Espadas",
-    "img": "assets/cartas/espadas/cinco_de_espadas.png",
+    "img": "cinco_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Lagrimas o enfermedad, sufrimiento fisico o emocional.",
     "clasico": "Conflicto, derrota, humillacion.",
@@ -354,7 +351,7 @@ const AM = [
   },
   {
     "n": "6 de Espadas",
-    "img": "assets/cartas/espadas/seis_de_espadas.png",
+    "img": "seis_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Viajes, desplazamiento, cambio de lugar.",
     "clasico": "Transicion, movimiento hacia algo mejor.",
@@ -362,7 +359,7 @@ const AM = [
   },
   {
     "n": "7 de Espadas",
-    "img": "assets/cartas/espadas/siete_de_espadas.png",
+    "img": "siete_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Noticias, informacion que llega.",
     "clasico": "Estrategia, astucia, planes que se manejan con cautela.",
@@ -370,7 +367,7 @@ const AM = [
   },
   {
     "n": "8 de Espadas",
-    "img": "assets/cartas/espadas/ocho_de_espadas.png",
+    "img": "ocho_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Rabia, enojo contenido o explosivo.",
     "clasico": "Bloqueo, restriccion, sentirse atrapado.",
@@ -378,7 +375,7 @@ const AM = [
   },
   {
     "n": "9 de Espadas",
-    "img": "assets/cartas/espadas/nueve_de_espadas.png",
+    "img": "nueve_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Dudas, incertidumbre que paraliza.",
     "clasico": "Angustia, pesadillas, mente que no descansa.",
@@ -386,7 +383,7 @@ const AM = [
   },
   {
     "n": "10 de Espadas",
-    "img": "assets/cartas/espadas/diez_de_espadas.png",
+    "img": "diez_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Discusion, conflicto verbal o enfrentamiento.",
     "clasico": "Crisis, fin de un ciclo doloroso, golpe bajo.",
@@ -394,7 +391,7 @@ const AM = [
   },
   {
     "n": "Sota de Espadas",
-    "img": "assets/cartas/espadas/sota_de_espadas.png",
+    "img": "sota_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Persona joven con actitud critica o combativa.",
     "clasico": "Mensajero de conflicto, pensamiento rapido, vigilancia.",
@@ -402,7 +399,7 @@ const AM = [
   },
   {
     "n": "Caballo de Espadas",
-    "img": "assets/cartas/",
+    "img": "caballero_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Accion rapida con agresividad o urgencia.",
     "clasico": "Movimiento brusco, conflicto en marcha, velocidad.",
@@ -410,7 +407,7 @@ const AM = [
   },
   {
     "n": "Reina de Espadas",
-    "img": "assets/cartas/espadas/reina_de_espadas.png",
+    "img": "reina_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Mujer con caracter fuerte, independiente, a veces fria.",
     "clasico": "Inteligencia, claridad, experiencia en el dolor.",
@@ -418,7 +415,7 @@ const AM = [
   },
   {
     "n": "Rey de Espadas",
-    "img": "assets/cartas/espadas/rey_de_espadas.png",
+    "img": "rey_de_espadas.png",
     "palo": "Espadas",
     "concreto": "Profesional, figura de autoridad, hombre de decision.",
     "clasico": "Intelecto maximo, juicio, poder mental.",
@@ -426,7 +423,7 @@ const AM = [
   },
   {
     "n": "As de Bastos",
-    "img": "assets/cartas/bastos/as_de_bastos.png",
+    "img": "as_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Recaida, algo que vuelve, una situacion que regresa.",
     "clasico": "Inicio de energia, fuerza creativa, impulso nuevo.",
@@ -434,7 +431,7 @@ const AM = [
   },
   {
     "n": "2 de Bastos",
-    "img": "assets/cartas/bastos/dos_de_bastos.png",
+    "img": "dos_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Malestar, incomodidad, algo que no esta bien.",
     "clasico": "Planificacion, dos fuerzas que se encuentran, proyecto gestado.",
@@ -442,7 +439,7 @@ const AM = [
   },
   {
     "n": "3 de Bastos",
-    "img": "assets/cartas/bastos/tres_de_bastos.png",
+    "img": "tres_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Emprendimiento, algo que se pone en marcha.",
     "clasico": "Expansion, vision a futuro, crecimiento.",
@@ -450,7 +447,7 @@ const AM = [
   },
   {
     "n": "4 de Bastos",
-    "img": "assets/cartas/bastos/cuatro_de_bastos.png",
+    "img": "cuatro_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Sociedad, union de personas para un fin comun.",
     "clasico": "Estabilidad, celebracion, logro colectivo.",
@@ -458,7 +455,7 @@ const AM = [
   },
   {
     "n": "5 de Bastos",
-    "img": "assets/cartas/bastos/cinco_de_bastos.png",
+    "img": "cinco_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Valores, lo que se defiende o se cuestiona.",
     "clasico": "Conflicto, competencia, choque de fuerzas.",
@@ -466,7 +463,7 @@ const AM = [
   },
   {
     "n": "6 de Bastos",
-    "img": "assets/cartas/bastos/seis_de_bastos.png",
+    "img": "seis_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Trabajo, actividad laboral, esfuerzo reconocido.",
     "clasico": "Logro, victoria, reconocimiento publico.",
@@ -474,7 +471,7 @@ const AM = [
   },
   {
     "n": "7 de Bastos",
-    "img": "assets/cartas/bastos/siete_de_bastos.png",
+    "img": "siete_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Conversacion, intercambio verbal, dialogo.",
     "clasico": "Defensa, resistencia, sostenerse ante la presion.",
@@ -482,7 +479,7 @@ const AM = [
   },
   {
     "n": "8 de Bastos",
-    "img": "assets/cartas/bastos/ocho_de_bastos.png",
+    "img": "ocho_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Desacuerdos, fricciones, falta de acuerdo.",
     "clasico": "Rapidez, mensajes que llegan rapido, movimiento acelerado.",
@@ -490,7 +487,7 @@ const AM = [
   },
   {
     "n": "9 de Bastos",
-    "img": "assets/cartas/bastos/nueve_de_bastos.png",
+    "img": "nueve_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Obstaculos, algo que frena o complica.",
     "clasico": "Resistencia, perseverancia, estar en guardia.",
@@ -498,7 +495,7 @@ const AM = [
   },
   {
     "n": "10 de Bastos",
-    "img": "assets/cartas/bastos/diez_de_bastos.png",
+    "img": "diez_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Tardanza, demoras, algo que no llega a tiempo.",
     "clasico": "Carga excesiva, agotamiento, responsabilidad pesada.",
@@ -506,7 +503,7 @@ const AM = [
   },
   {
     "n": "Sota de Bastos",
-    "img": "assets/cartas/bastos/sota_de_bastos.png",
+    "img": "sota_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Persona joven con energia o mensaje laboral.",
     "clasico": "Mensajero, noticias, inicio de algo nuevo.",
@@ -514,7 +511,7 @@ const AM = [
   },
   {
     "n": "Caballo de Bastos",
-    "img": "assets/cartas/",
+    "img": "caballero_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Viaje, desplazamiento real, movimiento.",
     "clasico": "Energia en marcha, accion rapida, impulso sin freno.",
@@ -522,15 +519,15 @@ const AM = [
   },
   {
     "n": "Reina de Bastos",
-    "img": "assets/cartas/bastos/reina_de_bastos.png",
+    "img": "reina_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Mujer con energia, emprendedora, activa.",
     "clasico": "Pasion, creatividad, liderazgo femenino.",
     "union": "Una mujer apasionada que lidera con energia y determinacion."
   },
   {
-    "n": "Rey de Bastos",
-    "img": "assets/cartas/bastos/rey_de_bastos.png",
+    "n": "Rey de Bastos",h
+    "img": "rey_de_bastos.png",
     "palo": "Bastos",
     "concreto": "Hombre activo, emprendedor, figura de liderazgo.",
     "clasico": "Vision, autoridad, fuego creativo en accion.",
@@ -538,7 +535,7 @@ const AM = [
   },
   {
     "n": "As de Oros",
-    "img": "assets/cartas/oros/as_de_oros.png",
+    "img": "as_de_oros.png",
     "palo": "Oros",
     "concreto": "Triunfo, exito concreto, victoria material.",
     "clasico": "Inicio material, semilla de prosperidad.",
@@ -546,7 +543,7 @@ const AM = [
   },
   {
     "n": "2 de Oros",
-    "img": "assets/cartas/oros/dos_de_oros.png",
+    "img": "dos_de_oros.png",
     "palo": "Oros",
     "concreto": "Papeles, documentos, tramites, burocracia.",
     "clasico": "Equilibrio entre dos situaciones, malabarismo.",
@@ -554,7 +551,7 @@ const AM = [
   },
   {
     "n": "3 de Oros",
-    "img": "assets/cartas/oros/tres_de_oros.png",
+    "img": "tres_de_oros.png",
     "palo": "Oros",
     "concreto": "Ninos o hermanos, vinculos familiares directos.",
     "clasico": "Colaboracion, trabajo en equipo, construccion conjunta.",
@@ -562,7 +559,7 @@ const AM = [
   },
   {
     "n": "4 de Oros",
-    "img": "assets/cartas/oros/cuatro_de_oros.png",
+    "img": "cuatro_de_oros.png",
     "palo": "Oros",
     "concreto": "Analisis o regalo, reflexion o algo que se recibe.",
     "clasico": "Control, apego, guardar recursos.",
@@ -570,7 +567,7 @@ const AM = [
   },
   {
     "n": "5 de Oros",
-    "img": "assets/cartas/oros/cinco_de_oros.png",
+    "img": "cinco_de_oros.png",
     "palo": "Oros",
     "concreto": "Amor, vinculo afectivo, relacion romantica.",
     "clasico": "Carencia material, dificultad economica.",
@@ -578,7 +575,7 @@ const AM = [
   },
   {
     "n": "6 de Oros",
-    "img": "assets/cartas/oros/seis_de_oros.png",
+    "img": "seis_de_oros.png",
     "palo": "Oros",
     "concreto": "Tiempo, los plazos, la espera.",
     "clasico": "Dar y recibir, generosidad, equilibrio en los intercambios.",
@@ -586,7 +583,7 @@ const AM = [
   },
   {
     "n": "7 de Oros",
-    "img": "assets/cartas/oros/siete_de_oros.png",
+    "img": "siete_de_oros.png",
     "palo": "Oros",
     "concreto": "Dinero, tema economico concreto.",
     "clasico": "Evaluacion, contemplar resultados, pausa reflexiva.",
@@ -594,7 +591,7 @@ const AM = [
   },
   {
     "n": "8 de Oros",
-    "img": "assets/cartas/oros/ocho_de_oros.png",
+    "img": "ocho_de_oros.png",
     "palo": "Oros",
     "concreto": "Mujer morocha, persona concreta de ese perfil.",
     "clasico": "Trabajo detallado, artesania, dedicacion.",
@@ -602,7 +599,7 @@ const AM = [
   },
   {
     "n": "9 de Oros",
-    "img": "assets/cartas/oros/nueve_de_oros.png",
+    "img": "nueve_de_oros.png",
     "palo": "Oros",
     "concreto": "Accion concreta, algo que se hace, se ejecuta.",
     "clasico": "Logro personal, independencia, fruto del esfuerzo.",
@@ -610,7 +607,7 @@ const AM = [
   },
   {
     "n": "10 de Oros",
-    "img": "assets/cartas/oros/diez_de_oros.png",
+    "img": "diez_de_oros.png",
     "palo": "Oros",
     "concreto": "Estudios u oficina, ambiente academico o laboral formal.",
     "clasico": "Estabilidad material, herencia, consolidacion.",
@@ -618,7 +615,7 @@ const AM = [
   },
   {
     "n": "Sota de Oros",
-    "img": "assets/cartas/oros/sota_de_oros.png",
+    "img": "sota_de_oros.png",
     "palo": "Oros",
     "concreto": "Persona joven ligada a lo material o estudios.",
     "clasico": "Estudiante, mensajero de buenas noticias materiales.",
@@ -626,7 +623,7 @@ const AM = [
   },
   {
     "n": "Caballo de Oros",
-    "img": "assets/cartas/",
+    "img": "caballero_de_oros.png",
     "palo": "Oros",
     "concreto": "Movimiento de dinero o bienes.",
     "clasico": "Avance practico, lento pero seguro, constancia.",
@@ -634,7 +631,7 @@ const AM = [
   },
   {
     "n": "Reina de Oros",
-    "img": "assets/cartas/oros/reina_de_oros.png",
+    "img": "reina_de_oros.png",
     "palo": "Oros",
     "concreto": "Mujer practica, con recursos, ligada a lo material.",
     "clasico": "Abundancia, sensatez, mujer que provee.",
@@ -642,7 +639,7 @@ const AM = [
   },
   {
     "n": "Rey de Oros",
-    "img": "assets/cartas/oros/rey_de_oros.png",
+    "img": "rey_de_oros.png",
     "palo": "Oros",
     "concreto": "Hombre exitoso economicamente, figura de poder material.",
     "clasico": "Dominio material, inversion, exito consolidado.",
@@ -650,7 +647,7 @@ const AM = [
   },
   {
     "n": "As de Copas",
-    "img": "assets/cartas/copas/as_de_copas.png",
+    "img": "as_de_copas.png",
     "palo": "Copas",
     "concreto": "Casa, el hogar, el espacio fisico donde se vive.",
     "clasico": "Inicio emocional, amor que nace, copa que desborda.",
@@ -658,7 +655,7 @@ const AM = [
   },
   {
     "n": "2 de Copas",
-    "img": "assets/cartas/copas/dos_de_copas.png",
+    "img": "dos_de_copas.png",
     "palo": "Copas",
     "concreto": "Union, dos personas que se encuentran o se vinculan.",
     "clasico": "Amor, pareja, alianza emocional.",
@@ -666,7 +663,7 @@ const AM = [
   },
   {
     "n": "3 de Copas",
-    "img": "assets/cartas/copas/tres_de_copas.png",
+    "img": "tres_de_copas.png",
     "palo": "Copas",
     "concreto": "Mejoria, algo que se recupera o mejora.",
     "clasico": "Celebracion, alegria compartida, abundancia emocional.",
@@ -674,7 +671,7 @@ const AM = [
   },
   {
     "n": "4 de Copas",
-    "img": "assets/cartas/copas/cuatro_de_copas.png",
+    "img": "cuatro_de_copas.png",
     "palo": "Copas",
     "concreto": "Amistades o disgustos, el circulo social.",
     "clasico": "Apatia, introspection, oferta que no convence.",
@@ -682,7 +679,7 @@ const AM = [
   },
   {
     "n": "5 de Copas",
-    "img": "assets/cartas/copas/cinco_de_copas.png",
+    "img": "cinco_de_copas.png",
     "palo": "Copas",
     "concreto": "Familia, el nucleo familiar, lo que nos une por sangre.",
     "clasico": "Perdida emocional, duelo, enfoque en lo que queda.",
@@ -690,7 +687,7 @@ const AM = [
   },
   {
     "n": "6 de Copas",
-    "img": "assets/cartas/copas/seis_de_copas.png",
+    "img": "seis_de_copas.png",
     "palo": "Copas",
     "concreto": "Pasado o futuro, lo que fue o lo que viene.",
     "clasico": "Nostalgia, recuerdos, inocencia perdida.",
@@ -698,7 +695,7 @@ const AM = [
   },
   {
     "n": "7 de Copas",
-    "img": "assets/cartas/copas/siete_de_copas.png",
+    "img": "siete_de_copas.png",
     "palo": "Copas",
     "concreto": "Pensamientos, lo que se piensa, se imagina o se planea.",
     "clasico": "Ilusion, confusion, muchas opciones sin claridad.",
@@ -706,7 +703,7 @@ const AM = [
   },
   {
     "n": "8 de Copas",
-    "img": "assets/cartas/copas/ocho_de_copas.png",
+    "img": "ocho_de_copas.png",
     "palo": "Copas",
     "concreto": "Mujer joven rubia, persona concreta de ese perfil.",
     "clasico": "Cambio emocional, dejar atras, buscar algo mas.",
@@ -714,7 +711,7 @@ const AM = [
   },
   {
     "n": "9 de Copas",
-    "img": "assets/cartas/copas/nueve_de_copas.png",
+    "img": "nueve_de_copas.png",
     "palo": "Copas",
     "concreto": "Exito, logro emocional o material reconocido.",
     "clasico": "Satisfaccion, deseos cumplidos, bienestar.",
@@ -722,7 +719,7 @@ const AM = [
   },
   {
     "n": "10 de Copas",
-    "img": "assets/cartas/copas/diez_de_copas.png",
+    "img": "diez_de_copas.png",
     "palo": "Copas",
     "concreto": "Reunion, encuentro de personas con carga afectiva.",
     "clasico": "Felicidad plena, armonia familiar, plenitud emocional.",
@@ -730,7 +727,7 @@ const AM = [
   },
   {
     "n": "Sota de Copas",
-    "img": "assets/cartas/copas/sota_de_copas.png",
+    "img": "sota_de_copas.png",
     "palo": "Copas",
     "concreto": "Persona joven sensible o con mensaje emocional.",
     "clasico": "Mensajero de amor, intuicion joven, propuesta afectiva.",
@@ -738,7 +735,7 @@ const AM = [
   },
   {
     "n": "Caballo de Copas",
-    "img": "assets/cartas/",
+    "img": "caballero_de_copas.png",
     "palo": "Copas",
     "concreto": "Movimiento emocional, alguien que llega con sentimientos.",
     "clasico": "Propuesta romantica, avance afectivo, caballero que llega.",
@@ -746,7 +743,7 @@ const AM = [
   },
   {
     "n": "Reina de Copas",
-    "img": "assets/cartas/copas/reina_de_copas.png",
+    "img": "reina_de_copas.png",
     "palo": "Copas",
     "concreto": "Mujer intuitiva, sensible, ligada a lo emocional.",
     "clasico": "Amor maternal, intuicion profunda, mujer que cuida.",
@@ -754,7 +751,7 @@ const AM = [
   },
   {
     "n": "Rey de Copas",
-    "img": "assets/cartas/copas/rey_de_copas.png",
+    "img": "rey_de_copas.png",
     "palo": "Copas",
     "concreto": "Hombre sensible, maduro emocionalmente, vinculado al arte o la familia.",
     "clasico": "Equilibrio emocional, sabiduria afectiva, hombre que contiene.",
@@ -896,7 +893,7 @@ async function llamarIA(prompt){
       'anthropic-dangerous-direct-browser-calls': 'true'
     },
     body: JSON.stringify({
-      model:'claude-opus-4-1-20250805',
+      model:'claude-opus-4-5',
       max_tokens:1500,
       messages:[{role:'user', content: prompt}]
     })
