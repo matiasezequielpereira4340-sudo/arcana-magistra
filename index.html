@@ -870,7 +870,7 @@ function tirarCartas(){
     w.innerHTML = `
       <div class="carta-pos">${pos[i]}</div>
       <div class="carta${c.inv ? ' invertida' : ''}">
-        <img src="${c.img}" alt="${c.n}" loading="lazy" onerror="this.style.display='none'; this.parentNode.innerHTML += '<span style=&quot;color:#d4af37;font-size:.7rem;padding:8px;text-align:center&quot;>Imagen no encontrada</span>';">
+        <img src="${c.img}" alt="${c.n}" loading="lazy" onerror="this.style.display='none';this.parentNode.style.display='flex';this.parentNode.style.flexDirection='column';this.parentNode.style.alignItems='center';this.parentNode.style.justifyContent='center';this.parentNode.innerHTML='<span style=\'color:#d4af37;font-size:0.85rem;text-align:center;padding:12px;font-style:italic\'>' + this.alt + '</span>';">
         ${c.inv ? '<span class="badge-inv">INV</span>' : ''}
       </div>
       <div class="carta-nombre">${c.n}${c.inv ? ' (Inv.)' : ''}</div>
