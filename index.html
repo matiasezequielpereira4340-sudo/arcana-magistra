@@ -954,12 +954,10 @@ async function evaluarCartas(){
   const pos = POS[spreadActual];
   const descCartas = cartasActuales.map((c,i) =>
     `${pos[i]}: ${c.n}${c.inv ? ' (invertida)' : ' (derecha)'} — Concreto: ${c.concreto} | Clásico: ${c.clasico} | Unión: ${c.union}`
-  ).join('
-');
+  ).join('\n');
   const refs = obtenerCombinacionesMayorMenor(cartasActuales);
   const refsTexto = refs.length
-    ? refs.map(r => `- ${r.clave}${r.invertida ? ' [hay carta invertida: tomar esta combinación como base y ajustar el matiz sin contradecirla]' : ''}: ${r.texto}`).join('
-')
+    ? refs.map(r => `- ${r.clave}${r.invertida ? ' [hay carta invertida: tomar esta combinación como base y ajustar el matiz sin contradecirla]' : ''}: ${r.texto}`).join('\n')
     : 'No hay combinación mayor + menor directa del manual en esta tirada.';
   const prompt = `Eres Verónica Otero, profesora de Tarot de Marsella con sistema Concreto + Clásico + Unión.
 
