@@ -859,7 +859,8 @@ function mezclar(a){
   return r;
 }
 
-function tirarCartas(){
+function getRutaCarta(c){ return c && c.img ? c.img : ''; }
+      function tirarCartas(){
   cartasActuales = mezclar(AM).slice(0, spreadActual).map(c => ({...c, inv: Math.random() < 0.3}));
   const con = document.getElementById('cartasContainer');
   const pos = POS[spreadActual];
